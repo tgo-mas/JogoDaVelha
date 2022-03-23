@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha - byTgomas</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"></link>
+</head>
+<body>
+    <div><h1>Jogo da Velha</h1></div>
+
+    <div>
+        <div id="0" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="1" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="2" class="quadro" onclick="escolherQuadro(id)">.</div>
+    </div>
+    <div>
+        <div id="3" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="4" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="5" class="quadro" onclick="escolherQuadro(id)">.</div>
+    </div>
+    <div>
+        <div id="6" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="7" class="quadro" onclick="escolherQuadro(id)">.</div>
+        <div id="8" class="quadro" onclick="escolherQuadro(id)">.</div>
+    </div>
+
+    <label id="jogadorAtual">Jogador atual: X</label><br/>
+    <label id="vencedor">Vencedor: </label><br/>
+    <button id="restart" onclick="restart()">Reiniciar</button>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
