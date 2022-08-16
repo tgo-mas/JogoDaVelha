@@ -10,8 +10,11 @@ const quadro8 = document.getElementById('7');
 const quadro9 = document.getElementById('8');
 const jogador = document.getElementById('jogadorAtual');
 const vencedor = document.getElementById('vencedor');
+const placarO = document.getElementById('placarO');
+const placarX = document.getElementById('placarX');
 
 var quadros = [quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9];
+
 
 var player = "X";
 var fim = false;
@@ -19,7 +22,7 @@ var fim = false;
 function escolherQuadro(i){
     console.log(i);
     if(fim){
-        for(quadro of quadros){
+        for(let quadro of quadros){
             limparQuadro(quadro);
         }
         fim = false;
@@ -78,16 +81,34 @@ function verificarPlacar(i) {
         quadros[6].classList.add('venceu');
         endGame();
     }
+    let cont = 0;
+    for(let quadro of quadros){
+        if(quadro.classList.contains('marcado') || quadro.classList.contains('venceu')){
+            cont++;
+        }
+    }
+    if(cont == 9){
+        fim = true;
+    }
 }
 
 function endGame(){
-    vencedor.innerHTML += player;
+    switch(player){
+        case 'X':
+            console.log(placarX.innerHTML)
+            plac = parseInt(placarX.innerHTML);
+            placarX.innerHTML = (plac + 1);
+            break;
+        case 'O':
+            plac = parseInt(placarO.innerHTML);
+            placarO.innerHTML = (plac + 1);
+            break;
+    }
     fim = true;
 }
 
 function restart(){
-    for(let i = 0; i < quadros.length; i++){
-        limparQuadro(quadros[i]);
-        vencedor.innerHTML = 'Vencedor: '
+    for(let quadro of quadros){
+        limparQuadro(quadro);
     }
 }
