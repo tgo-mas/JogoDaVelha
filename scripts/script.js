@@ -14,9 +14,16 @@ const vencedor = document.getElementById('vencedor');
 var quadros = [quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9];
 
 var player = "X";
+var fim = false;
 
 function escolherQuadro(i){
     console.log(i);
+    if(fim){
+        for(quadro of quadros){
+            limparQuadro(quadro);
+        }
+        fim = false;
+    }
     quadros[i].classList.add('marcado');
     quadros[i].innerHTML = player;
     verificarPlacar(i);
@@ -75,6 +82,7 @@ function verificarPlacar(i) {
 
 function endGame(){
     vencedor.innerHTML += player;
+    fim = true;
 }
 
 function restart(){
