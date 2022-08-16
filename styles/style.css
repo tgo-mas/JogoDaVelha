@@ -1,6 +1,13 @@
 body {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section{
+    margin: auto;
 }
 
 .quadro {

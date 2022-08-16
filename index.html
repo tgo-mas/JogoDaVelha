@@ -8,30 +8,36 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css"></link>
 </head>
 <body>
-    <div><h1>Jogo da Velha</h1></div>
+    <section>
+        <div class="placar">
+            <h1>Placar</h1><br/>
+            <div>O</div><div>X</div><br/>
+            <div id="placarO">0</div><div id="placarX">0</div>
+        </div>
+    </section>
+    <section>
+        <div><h1>Jogo da Velha</h1></div>
 
-    <div>
-        <div id="0" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="1" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="2" class="quadro" onclick="escolherQuadro(id)">.</div>
-    </div>
-    <div>
-        <div id="3" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="4" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="5" class="quadro" onclick="escolherQuadro(id)">.</div>
-    </div>
-    <div>
-        <div id="6" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="7" class="quadro" onclick="escolherQuadro(id)">.</div>
-        <div id="8" class="quadro" onclick="escolherQuadro(id)">.</div>
-    </div>
+        <div>
+            <div id="0" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="1" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="2" class="quadro" onclick="escolherQuadro(id)">.</div>
+        </div>
+        <div>
+            <div id="3" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="4" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="5" class="quadro" onclick="escolherQuadro(id)">.</div>
+        </div>
+        <div>
+            <div id="6" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="7" class="quadro" onclick="escolherQuadro(id)">.</div>
+            <div id="8" class="quadro" onclick="escolherQuadro(id)">.</div>
+        </div>
 
-    <label id="jogadorAtual">Jogador atual: X</label><br/>
-    <div class="placar">
-        <h1>Placar</h1><br/>
-        <div>O</div><div>X</div><br/>
-        <div id="placarO">0</div><div id="placarX">0</div>
-    </div>
+    </section>
+    <section>
+        <label id="jogadorAtual">Jogador atual: X</label><br/>
+    </section>
 
     <script src="scripts/script.js"></script>
 </body>
