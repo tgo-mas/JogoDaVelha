@@ -45,7 +45,7 @@ function mudarJogador() {
     } else {
         player = "X";
     }
-    jogador.innerHTML = 'Jogador atual: ' + player;
+    jogador.innerHTML = player;
 }
 
 function verificarPlacar(i) {
