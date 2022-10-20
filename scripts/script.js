@@ -96,75 +96,91 @@ function verificarGame() {
     }
 }
 
+/// fillJogo() -> Retorna matriz esquematizada do game.
+function fillJogo(){
+    let jogo = [[1,2,3],
+                [4,5,6],
+                [7,8,9]];
+
+    for(let i = 0; i < 3; i++){
+        for(let j = 0; j < 3; j++){
+            jogo[i][j] = quadros[(j + i*3) + 1].innerHTML;
+        }
+    }
+
+    return jogo;
+}
+
 /// jogadaPc() -> Verifica o jogo e faz uma jogada estratégica (ofensiva ou defensiva). Usado no modo Player vs. PC.
 function jogadaPc(){
     let jogou = false;
+    let jogo = fillJogo();
 
     //----------condicionais ofensivas-----------
     if(((jogo[1][0] == 'O' && jogo[2][0] == 'O') || (jogo[0][1] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][2] == 'O')) && (jogo[0][0] == 1)){
-        jogo[0][0] = 'O';
-        return true;
+      escolherQuadro(1);
+      jogou = True; 
     }else if(((jogo[0][0] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][1] == 'O')) && (jogo[0][1] == 2)){
-      jogo[0][1] = 'O';
-      return True;
+      escolherQuadro(2);
+      jogou = True; 
     }else if (((jogo[0][0] == 'O' && jogo[0][1] == 'O') || (jogo[1][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][0] == 'O')) && (jogo[0][2] == 3)){
-      jogo[0][2] = 'O';
-      return True;
+      escolherQuadro(3);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'O' && jogo[2][0] == 'O') || (jogo[1][1] == 'O' && jogo[1][2] == 'O')) && (jogo[1][0] == 4)){
-      jogo[1][0] = 'O';
-      return True;
+      escolherQuadro(4);
+      jogou = True; 
     }else if(((jogo[0][0] == 'O' && jogo[2][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O') || (jogo[1][0] == 'O' && jogo[1][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O')) && (jogo[1][1] == 5)){
-      jogo[1][1] = 'O';
-      return True;
+      escolherQuadro(5);
+      jogou = True; 
     }else if( ((jogo[0][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][0] == 'O' && jogo[1][1] == 'O')) && (jogo[1][2] == 6)){
-      jogo[1][2] = 'O';
-      return True;
+      escolherQuadro(6);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'O' && jogo[1][0] == 'O') || (jogo[0][2] == 'O' && jogo[1][1] == 'O') || (jogo[2][1] == 'O' && jogo[2][2] == 'O')) && (jogo[2][0] == 7)){
-      jogo[2][0] = 'O';
-      return True;
+      escolherQuadro(7);
+      jogou = True; 
     }else if( ((jogo[0][1] == 'O' && jogo[1][1] == 'O') || (jogo[2][0] == 'O' && jogo[2][2] == 'O')) && (jogo[2][1] == 8)){
-      jogo[2][1] = 'O';
-      return True;
+      escolherQuadro(8);
+      jogou = True; 
     }else if( ((jogo[0][2] == 'O' && jogo[1][2] == 'O') || (jogo[2][0] == 'O' && jogo[2][1] == 'O') || (jogo[0][0] == 'O' && jogo[1][1] == 'O')) && (jogo[2][2] == 9)){
-      jogo[2][2] = 'O';
-      return True;
+      escolherQuadro(9);
+      jogou = True; 
     }
 
     //----- condicionais defensivas------
     if(((jogo[1][0] == 'X' && jogo[2][0] == 'X') || (jogo[0][1] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][2] == 'X')) && (jogo[0][0] == 1)){
-      jogo[0][0] = 'O';
-      return True;
+      escolherQuadro(1);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][1] == 'X')) && (jogo[0][1] == 2)){
-      jogo[0][1] = 'O';
-      return True;
+      escolherQuadro(2);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'X' && jogo[0][1] == 'X') || (jogo[1][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][0] == 'X')) && (jogo[0][2] == 3)){
-      jogo[0][2] = 'O';
-      return True;
+      escolherQuadro(3);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'X' && jogo[2][0] == 'X') || (jogo[1][1] == 'X' && jogo[1][2] == 'X')) && (jogo[1][0] == 4)){
-      jogo[1][0] = 'O';
-      return True;
+      escolherQuadro(4);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'X' && jogo[2][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X') || (jogo[1][0] == 'X' && jogo[1][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X')) && (jogo[1][1] == 5)){
-      jogo[1][1] = 'O';
-      return True;
+      escolherQuadro(5);
+      jogou = True; 
     }else if( ((jogo[0][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][0] == 'X' && jogo[1][1] == 'X')) && (jogo[1][2] == 6)){
-      jogo[1][2] = 'O';
-      return True;
+      escolherQuadro(6);
+      jogou = True; 
     }else if( ((jogo[0][0] == 'X' && jogo[1][0] == 'X') || (jogo[0][2] == 'X' && jogo[1][1] == 'X') || (jogo[2][1] == 'X' && jogo[2][2] == 'X')) && (jogo[2][0] == 7)){
-      jogo[2][0] = 'O';
-      return True;
+      escolherQuadro(7);
+      jogou = True; 
     }else if( ((jogo[0][1] == 'X' && jogo[1][1] == 'X') || (jogo[2][0] == 'X' && jogo[2][2] == 'X')) && (jogo[2][1] == 8)){
-      jogo[2][1] = 'O';
-      return True;
+      escolherQuadro(8);
+      jogou = True; 
     }else if( ((jogo[0][2] == 'X' && jogo[1][2] == 'X') || (jogo[2][0] == 'X' && jogo[2][1] == 'X') || (jogo[0][0] == 'X' && jogo[1][1] == 'X')) && (jogo[2][2] == 9)){
-      jogo[2][2] = 'O';
-      return True;
+      escolherQuadro(9);
+      jogou = True; 
     }
     while (!jogou){
-      i = randint(0,2);
-      j = randint(0,2);
+      i = Math.floor(Math.random() * 2);
+      j = Math.floor(Math.random() * 2);
   
       if(jogo[i][j] != 'X' && jogo[i][j] != 'O'){
-        jogo[i][j] = 'O';
+        escolherQuadro((j + i*3) + 1);
         jogou = True;  
       }
     }
