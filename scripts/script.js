@@ -12,12 +12,22 @@ const jogador = document.getElementById('jogadorAtual');
 const vencedor = document.getElementById('vencedor');
 const placarO = document.getElementById('placarO');
 const placarX = document.getElementById('placarX');
+const toggle = document.getElementById('slide');
 
 var quadros = [quadro1, quadro2, quadro3, quadro4, quadro5, quadro6, quadro7, quadro8, quadro9];
 
 //// Variáveis para funcionamento do game
 var player = "X";
 var fim = false;
+var contraPC = false;
+
+toggle.addEventListener("click", () => {
+  contraPC = true;
+  console.log("Acionou");
+  if(!fim){
+    fim = true;
+  }
+});
 
 /// escolherQuadro(id) -> Seleciona o quadro escolhido para o player da vez (var player).
 function escolherQuadro(i){
@@ -32,6 +42,10 @@ function escolherQuadro(i){
     quadros[i].innerHTML = player;
     verificarGame();
     mudarJogador();
+    if(contraPC && player == 'O'){
+      jogadaPc();
+      verificarGame();
+    }
 }
 
 /// limparQuadro(id) -> Limpa o quadro 'id'. Chamado na função restart().
@@ -49,6 +63,7 @@ function mudarJogador() {
         player = "X";
     }
     jogador.innerHTML = player;
+    console.log('trocou');
 }
 
 /// verificarGame() -> Verifica o jogo para saber se há vencedor.
@@ -104,7 +119,7 @@ function fillJogo(){
 
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
-            jogo[i][j] = quadros[(j + i*3) + 1].innerHTML;
+            jogo[i][j] = quadros[(j + i*3)].innerHTML;
         }
     }
 
@@ -117,71 +132,73 @@ function jogadaPc(){
     let jogo = fillJogo();
 
     //----------condicionais ofensivas-----------
-    if(((jogo[1][0] == 'O' && jogo[2][0] == 'O') || (jogo[0][1] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][2] == 'O')) && (jogo[0][0] == 1)){
+    if(((jogo[1][0] == 'O' && jogo[2][0] == 'O') || (jogo[0][1] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][2] == 'O')) && (jogo[0][0] == '.')){
+      escolherQuadro(0);
+      jogou = true; 
+    }else if(((jogo[0][0] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][1] == 'O')) && (jogo[0][1] == '.')){
       escolherQuadro(1);
-      jogou = True; 
-    }else if(((jogo[0][0] == 'O' && jogo[0][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][1] == 'O')) && (jogo[0][1] == 2)){
+      jogou = true; 
+    }else if (((jogo[0][0] == 'O' && jogo[0][1] == 'O') || (jogo[1][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][0] == 'O')) && (jogo[0][2] == '.')){
       escolherQuadro(2);
-      jogou = True; 
-    }else if (((jogo[0][0] == 'O' && jogo[0][1] == 'O') || (jogo[1][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][1] == 'O' && jogo[2][0] == 'O')) && (jogo[0][2] == 3)){
+      jogou = true; 
+    }else if( ((jogo[0][0] == 'O' && jogo[2][0] == 'O') || (jogo[1][1] == 'O' && jogo[1][2] == 'O')) && (jogo[1][0] == '.')){
       escolherQuadro(3);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'O' && jogo[2][0] == 'O') || (jogo[1][1] == 'O' && jogo[1][2] == 'O')) && (jogo[1][0] == 4)){
+      jogou = true; 
+    }else if(((jogo[0][0] == 'O' && jogo[2][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O') || (jogo[1][0] == 'O' && jogo[1][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O')) && (jogo[1][1] == '.')){
       escolherQuadro(4);
-      jogou = True; 
-    }else if(((jogo[0][0] == 'O' && jogo[2][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O') || (jogo[1][0] == 'O' && jogo[1][2] == 'O') || (jogo[0][1] == 'O' && jogo[2][1] == 'O')) && (jogo[1][1] == 5)){
+      jogou = true; 
+    }else if( ((jogo[0][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][0] == 'O' && jogo[1][1] == 'O')) && (jogo[1][2] == '.')){
       escolherQuadro(5);
-      jogou = True; 
-    }else if( ((jogo[0][2] == 'O' && jogo[2][2] == 'O') || (jogo[1][0] == 'O' && jogo[1][1] == 'O')) && (jogo[1][2] == 6)){
+      jogou = true; 
+    }else if( ((jogo[0][0] == 'O' && jogo[1][0] == 'O') || (jogo[0][2] == 'O' && jogo[1][1] == 'O') || (jogo[2][1] == 'O' && jogo[2][2] == 'O')) && (jogo[2][0] == '.')){
       escolherQuadro(6);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'O' && jogo[1][0] == 'O') || (jogo[0][2] == 'O' && jogo[1][1] == 'O') || (jogo[2][1] == 'O' && jogo[2][2] == 'O')) && (jogo[2][0] == 7)){
+      jogou = true; 
+    }else if( ((jogo[0][1] == 'O' && jogo[1][1] == 'O') || (jogo[2][0] == 'O' && jogo[2][2] == 'O')) && (jogo[2][1] == '.')){
       escolherQuadro(7);
-      jogou = True; 
-    }else if( ((jogo[0][1] == 'O' && jogo[1][1] == 'O') || (jogo[2][0] == 'O' && jogo[2][2] == 'O')) && (jogo[2][1] == 8)){
+      jogou = true; 
+    }else if( ((jogo[0][2] == 'O' && jogo[1][2] == 'O') || (jogo[2][0] == 'O' && jogo[2][1] == 'O') || (jogo[0][0] == 'O' && jogo[1][1] == 'O')) && (jogo[2][2] == '.')){
       escolherQuadro(8);
-      jogou = True; 
-    }else if( ((jogo[0][2] == 'O' && jogo[1][2] == 'O') || (jogo[2][0] == 'O' && jogo[2][1] == 'O') || (jogo[0][0] == 'O' && jogo[1][1] == 'O')) && (jogo[2][2] == 9)){
-      escolherQuadro(9);
-      jogou = True; 
+      jogou = true; 
+    }else{       
+      //----- condicionais defensivas------
+      
+      if(((jogo[1][0] == 'X' && jogo[2][0] == 'X') || (jogo[0][1] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][2] == 'X')) && (jogo[0][0] == '.')){
+        escolherQuadro(0);
+        jogou = true; 
+      }else if( ((jogo[0][0] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][1] == 'X')) && (jogo[0][1] == '.')){
+        escolherQuadro(1);
+        jogou = true; 
+      }else if( ((jogo[0][0] == 'X' && jogo[0][1] == 'X') || (jogo[1][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][0] == 'X')) && (jogo[0][2] == '.')){
+        escolherQuadro(2);
+        jogou = true; 
+      }else if( ((jogo[0][0] == 'X' && jogo[2][0] == 'X') || (jogo[1][1] == 'X' && jogo[1][2] == 'X')) && (jogo[1][0] == '.')){
+        escolherQuadro(3);
+        jogou = true; 
+      }else if( ((jogo[0][0] == 'X' && jogo[2][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X') || (jogo[1][0] == 'X' && jogo[1][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X')) && (jogo[1][1] == '.')){
+        escolherQuadro(4);
+        jogou = true; 
+      }else if( ((jogo[0][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][0] == 'X' && jogo[1][1] == 'X')) && (jogo[1][2] == '.')){
+        escolherQuadro(5);
+        jogou = true; 
+      }else if( ((jogo[0][0] == 'X' && jogo[1][0] == 'X') || (jogo[0][2] == 'X' && jogo[1][1] == 'X') || (jogo[2][1] == 'X' && jogo[2][2] == 'X')) && (jogo[2][0] == '.')){
+        escolherQuadro(6);
+        jogou = true; 
+      }else if( ((jogo[0][1] == 'X' && jogo[1][1] == 'X') || (jogo[2][0] == 'X' && jogo[2][2] == 'X')) && (jogo[2][1] == '.')){
+        escolherQuadro(7);
+        jogou = true; 
+      }else if( ((jogo[0][2] == 'X' && jogo[1][2] == 'X') || (jogo[2][0] == 'X' && jogo[2][1] == 'X') || (jogo[0][0] == 'X' && jogo[1][1] == 'X')) && (jogo[2][2] == '.')){
+        escolherQuadro(8);
+        jogou = true; 
+      }
     }
 
-    //----- condicionais defensivas------
-    if(((jogo[1][0] == 'X' && jogo[2][0] == 'X') || (jogo[0][1] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][2] == 'X')) && (jogo[0][0] == 1)){
-      escolherQuadro(1);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'X' && jogo[0][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][1] == 'X')) && (jogo[0][1] == 2)){
-      escolherQuadro(2);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'X' && jogo[0][1] == 'X') || (jogo[1][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][1] == 'X' && jogo[2][0] == 'X')) && (jogo[0][2] == 3)){
-      escolherQuadro(3);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'X' && jogo[2][0] == 'X') || (jogo[1][1] == 'X' && jogo[1][2] == 'X')) && (jogo[1][0] == 4)){
-      escolherQuadro(4);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'X' && jogo[2][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X') || (jogo[1][0] == 'X' && jogo[1][2] == 'X') || (jogo[0][1] == 'X' && jogo[2][1] == 'X')) && (jogo[1][1] == 5)){
-      escolherQuadro(5);
-      jogou = True; 
-    }else if( ((jogo[0][2] == 'X' && jogo[2][2] == 'X') || (jogo[1][0] == 'X' && jogo[1][1] == 'X')) && (jogo[1][2] == 6)){
-      escolherQuadro(6);
-      jogou = True; 
-    }else if( ((jogo[0][0] == 'X' && jogo[1][0] == 'X') || (jogo[0][2] == 'X' && jogo[1][1] == 'X') || (jogo[2][1] == 'X' && jogo[2][2] == 'X')) && (jogo[2][0] == 7)){
-      escolherQuadro(7);
-      jogou = True; 
-    }else if( ((jogo[0][1] == 'X' && jogo[1][1] == 'X') || (jogo[2][0] == 'X' && jogo[2][2] == 'X')) && (jogo[2][1] == 8)){
-      escolherQuadro(8);
-      jogou = True; 
-    }else if( ((jogo[0][2] == 'X' && jogo[1][2] == 'X') || (jogo[2][0] == 'X' && jogo[2][1] == 'X') || (jogo[0][0] == 'X' && jogo[1][1] == 'X')) && (jogo[2][2] == 9)){
-      escolherQuadro(9);
-      jogou = True; 
-    }
     while (!jogou){
       i = Math.floor(Math.random() * 2);
       j = Math.floor(Math.random() * 2);
   
       if(jogo[i][j] != 'X' && jogo[i][j] != 'O'){
         escolherQuadro((j + i*3) + 1);
-        jogou = True;  
+        jogou = true;  
       }
     }
 }
@@ -190,7 +207,7 @@ function jogadaPc(){
 function endGame(){
     switch(player){
         case 'X':
-            console.log(placarX.innerHTML)
+            console.log(placarX.innerHTML);
             plac = parseInt(placarX.innerHTML);
             placarX.innerHTML = (plac + 1);
             break;
